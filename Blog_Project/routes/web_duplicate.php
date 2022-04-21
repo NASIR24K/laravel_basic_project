@@ -23,7 +23,7 @@ Route::controller(ImageController::class)->group(function(){
 Route::get('image', [ImageController::class, 'imagdata'])->name('image.image');
 Route::post('imageupload', [ImageController::class, 'imageUploadData'])->name('image.imageupload');
 
-//Route::get('dd',[ImageController::class, 'selectData']);
+
 Route::get('store',[ImageController::class, 'selectDataRow'])->name('people.store');
 Route::get('create',[ImageController::class, 'createdata'])->name('people.create');
 Route::post('insert',[ImageController::class, 'insertData'])->name('people.insert');

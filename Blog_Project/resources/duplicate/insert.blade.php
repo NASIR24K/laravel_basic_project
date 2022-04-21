@@ -26,7 +26,7 @@
 </div>
 @endif
         <div class="col-md-12">
-            <form id="insert_form" method="POST" action="{{route('people.insert')}}" enctype="multipart/form-data" >
+            <form  method="POST" action="{{route('people.insert')}}" enctype="multipart/form-data" >
                 @csrf
             <div class="form-group">
                 <label for="name" class="name">Name</label>
@@ -64,22 +64,5 @@
       <script type="text/javascript" src="{{asset('js/bootstrap.min.js')}}" ></script>
       <script type="text/javascript" src="{{asset('js/jquery-3.6.0.min.js')}}"></script>
       <script type="text/javascript" src="{{asset('js/popper.min.js')}}" ></script>
-
-      <script>
-           $('#insert_form').submit(function(event){
-          event.preventDefault();
-          var form=$(this);
-          var url=form.attr('action');
-          console.log(form.serialize());
-          $.ajax({
-              type: "POST",
-              url: url,
-              data: form.serialize();
-              success.function(data){
-                  alert(data);
-              }
-          });
-           });
-      </script>
 </body>
 </html>
