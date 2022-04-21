@@ -24,7 +24,7 @@
         @endforeach
     </ul>
 </div>
-@endif
+@endifz
         <div class="col-md-12">
             <form id="insert_form" method="POST" action="{{route('people.insert')}}" enctype="multipart/form-data" >
                 @csrf

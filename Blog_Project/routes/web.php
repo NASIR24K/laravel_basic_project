@@ -33,3 +33,4 @@ Route::get('delete/{id}', [ImageController::class, 'DeleteData'])->name('people.
 Route::get('object', [OppController::class, 'OppObject']);
 
 ///////////////////ajax insert, update, delete, select///////////
+Route::get('begin',[ImageController::class, 'create_ajax_data'])->name('people.begin');

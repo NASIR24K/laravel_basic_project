@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Hash;
 use App\Models\emplyoee;
 use App\Models\people;
 use Carbon\Carbon;
+use Validator;
 class ImageController extends Controller
 {  
    function imagdata(){
@@ -57,19 +58,34 @@ function createdata(){
     return view('insert');
 }
 
+function create_ajax_data(){
+    return view('create_ajax');
+}
 
   function insertData(request $request){
 
       //dd($request->number);
    // dd($request->all());
        
-     $request->validate([ 
+/*      $request->validate([ 
         'name'=>'required|min:5|max:24|unique:people',
         'e_mail'=>'required|regex:/(.+)@(.+)\.(.+)/i|unique:people|email',
         'number'=>'required|integer|min:5',
         'password'=>'required|min:5',
         'file_image' => 'required|max:10000|mimes:jpg,png,jpeg',
-      ]);
+      ]); */
+      $validator=Validator::make($request->all(), [
+        'name'=>'required|min:5|max:24|unique:people',
+        'e_mail'=>'required|regex:/(.+)@(.+)\.(.+)/i|unique:people|email',
+        'number'=>'required|integer|min:5',
+        'password'=>'required|min:5',
+        'file_image' => 'required|max:10000|mimes:jpg,png,jpeg',
+    ]);
+    if ($validator->fails()) {    
+        return response()->json(['errors' => $validator->GetMessageBag()->toArray()]);
+    }
+
+
       if($request->HasFile('file_image')){
           
           $img_name=$request->file_image;
@@ -98,9 +114,9 @@ function createdata(){
           'Address'=> $request->address,
           'created_at'=> carbon::now(),
       ]); */
-      return response()->Json('Data added Successfully');
+      //return response()->Json('Data added Successfully');
       //return redirect()->route('people.store');
-      return response()->Json(route('people.store'));
+      //return response()->Json(route('people.store'));
     //return back();// back to same page
    //return redirect(route('people.store'));// redirect location system
    //return redirect()->route('people.store');// redirect location system

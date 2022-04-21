@@ -9,7 +9,8 @@
     <link href="{{asset('css/custom.css')}}" rel="stylesheet">
     <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet">
     <link href="{{asset('css/select.bootstrap.min.css')}}" rel="stylesheet">
-  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+     crossorigin="anonymous">
 </head>
 <body>
     
@@ -64,9 +65,6 @@
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="container">
-        <div class="alert">
-         
-        </div>
             <div class="col-md-12">
                 <form id="insert_form" method="POST" action="{{route('people.insert')}}" enctype="multipart/form-data" >
                     @csrf
@@ -101,7 +99,12 @@
     </div>
         </div>
   </div>
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+</div>
+
+
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
       <script type="text/javascript" src="{{asset('js/popper.min.js')}}" ></script>
       <script type="text/javascript" src="{{asset('js/custom.js')}}" ></script>
       <script type="text/javascript" src="{{asset('js/bootstrap.min.js')}}" ></script>
@@ -110,24 +113,24 @@
         $('#insert_form').submit(function(event){
        event.preventDefault();
        var form=$(this);
-       var url=form.attr('action');
+       
        //console.log(form.serialize());
        $.ajax({
-           type : "POST",
-           url  : url,
+           'type' : "POST",
+           'url'  : form.attr('action'),
            data : new FormData(this),
-           dataType: "JSON",
+           dataType: "JSON"
            contentType: false,
            cache: false,
            processData: false,
            success: function(data)
            {
-             $('.alert').html(data);
                console.log(data);
            }
        });
         });
-    
+       
+  
    </script>
      
 </body>
